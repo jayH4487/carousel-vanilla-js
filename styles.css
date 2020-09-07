@@ -37,6 +37,10 @@
     position: relative;
 }
 
+.carousel-btn:enabled {
+    outline: none;
+}
+
 .carousel-btn-prev::before,
 .carousel-btn-next::before {
     box-sizing: border-box;
