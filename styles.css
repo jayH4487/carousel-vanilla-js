@@ -1,15 +1,32 @@
 .carousel {
+    overflow: hidden;
     max-width: 600px;
     position: relative;
 }
 
 .carousel-item {
-    display: none;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    transition: all 0.5s;
 }
 
 .carousel-item-active {
-    display: block;
-    animation: fadeVisibility 0.5s;
+    opacity: 1;
+    position: relative;
+    z-index: 900;
+}
+
+.carousel-item-prev {
+    z-index: 800;
+    transform: translateX(-100%);
+}
+
+.carousel-item-next {
+    z-index: 800;
+    transform: translateX(100%);
 }
 
 .carousel-img {
@@ -17,6 +34,7 @@
 }
 
 .carousel-actions {
+    z-index: 1000;
     box-sizing: border-box;
     width: 100%;
     display: grid;
@@ -63,17 +81,8 @@
     transform: translate(-75%, -50%) rotate(135deg)
 }
 
-@keyframes fadeVisibility {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
 .carousel-indicators {
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     width: 20%;
