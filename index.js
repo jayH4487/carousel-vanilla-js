@@ -4,6 +4,7 @@ const $slides = document.querySelectorAll(".carousel-item")
 const $indicators = document.querySelectorAll(".carousel-indicator")
 
 const totalSlides = $slides.length
+let intervalId = ""
 
 const initialClasses = () => {
     $slides[totalSlides - 1].classList.add("carousel-item-prev")
@@ -28,7 +29,7 @@ const removeClassNamesFromAllItems = (classNames, items) => {
     items.forEach(item => item.classList.remove(...classNames))
 }
 
-const moveSlide = (e) => {
+const moveSlide = (direction) => {
     const currentPosition = getSlidePosition($slides)
     
     removeClassNamesFromAllItems(
@@ -37,7 +38,7 @@ const moveSlide = (e) => {
         )
     removeClassNamesFromAllItems(["carousel-indicator-active"], $indicators)
     
-    const offset = e.target.name === "next" ? 1 : -1
+    const offset = direction === "next" ? 1 : -1
 
     const previousSlide = mod(currentPosition + offset - 1, totalSlides)
     const activeSlide = mod(currentPosition + offset, totalSlides)
@@ -50,5 +51,18 @@ const moveSlide = (e) => {
     $indicators[activeSlide].classList.add("carousel-indicator-active")
 }
 
-$carouselBtnNext.addEventListener("click", moveSlide)
-$carouselBtnPrev.addEventListener("click", moveSlide)
+const setTimer = () => {
+    intervalId = setInterval(() => {
+        moveSlide("next")
+    }, 3000)
+}
+setTimer()
+
+const handleClick = (direction) => {
+    clearInterval(intervalId)
+    moveSlide(direction)
+    setTimer()
+}
+
+$carouselBtnNext.addEventListener("click", () => handleClick("next"))
+$carouselBtnPrev.addEventListener("click", () => handleClick("prev"))
