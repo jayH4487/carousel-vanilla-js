@@ -75,11 +75,22 @@
 
 .carousel-indicators {
     display: flex;
+    justify-content: space-between;
+    width: 20%;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .carousel-indicator {
-    width: 20px;
-    height: 20px;
-    background: black;
+    width: 15px;
+    height: 15px;
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
+    border: 3px solid white;
+}
+
+.carousel-indicator-active {
+    background: white;
 }
