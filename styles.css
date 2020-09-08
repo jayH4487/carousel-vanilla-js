@@ -7,8 +7,9 @@
     display: none;
 }
 
-.carousel-item-visible {
+.carousel-item-active {
     display: block;
+    animation: fadeVisibility 0.5s;
 }
 
 .carousel-img {
@@ -60,4 +61,14 @@
 
 .carousel-btn-next::before {
     transform: translate(-75%, -50%) rotate(135deg)
+}
+
+@keyframes fadeVisibility {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
